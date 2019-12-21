@@ -45,6 +45,7 @@ public class AppConfig {
 		// hibernate properties
 		props.put(SHOW_SQL, env.getProperty("hibernate.show_sql"));
 		props.put(HBM2DDL_AUTO, env.getProperty("hibernate.hbm2ddl.auto"));
+		props.put(DIALECT, env.getProperty("hibernate.dialect"));
 
 		// c3p0 properties
 		props.put(C3P0_MIN_SIZE, env.getProperty("hibernate.c3p0.min_size"));
