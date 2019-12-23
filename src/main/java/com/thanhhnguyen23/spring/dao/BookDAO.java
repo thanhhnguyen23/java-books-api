@@ -2,8 +2,11 @@ package com.thanhhnguyen23.spring.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.thanhhnguyen23.spring.model.Book;
 
+@Component
 public interface BookDAO {
 
 	// save record

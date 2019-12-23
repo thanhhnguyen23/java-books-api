@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.thanhhnguyen23.spring.model.Book;
 
-public class BookDAOImpl implements BookDAO{
-	
+@Repository 
+public class BookDAOImpl implements BookDAO {
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -33,14 +35,13 @@ public class BookDAOImpl implements BookDAO{
 	@Override
 	public void update(long id, Book book) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void delete(long id) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 }
