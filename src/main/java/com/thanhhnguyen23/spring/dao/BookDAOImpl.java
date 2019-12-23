@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.thanhhnguyen23.spring.model.Book;
 
-@Repository 
+@Repository // TODO -- explore internals 
 public class BookDAOImpl implements BookDAO {
 
 	@Autowired
@@ -16,8 +16,8 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public long save(Book book) {
-		// TODO Auto-generated method stub
-		return 0;
+		sessionFactory.getCurrentSession().save(book);
+		return book.getId();
 	}
 
 	@Override

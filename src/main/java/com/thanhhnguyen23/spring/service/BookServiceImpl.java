@@ -17,21 +17,22 @@ public class BookServiceImpl implements BookService{
 	private BookDAO bookDAO;
 
 	@Override
+	@Transactional // TODO -- explore internals
 	public long save(Book book) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Book get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("saving book...");
+		return bookDAO.save(book);
 	}
 
 	@Override
 	@Transactional // TODO -- explore internals
 	public List<Book> list() {
 		return bookDAO.list();
+	}
+
+	@Override
+	public Book get(long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -45,6 +46,5 @@ public class BookServiceImpl implements BookService{
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }
