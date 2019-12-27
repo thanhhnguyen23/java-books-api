@@ -31,14 +31,14 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public Book get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("getting one single book...");
+		return bookDAO.get(id);
 	}
 
 	@Override
+	@Transactional // TODO -- explore internals
 	public void update(long id, Book book) {
-		// TODO Auto-generated method stub
-		
+	    bookDAO.update(id, book);
 	}
 
 	@Override

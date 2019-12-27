@@ -2,11 +2,14 @@ package com.thanhhnguyen23.spring.dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.thanhhnguyen23.spring.model.Book;
+
+import javax.transaction.Transactional;
 
 @Repository // TODO -- explore internals 
 public class BookDAOImpl implements BookDAO {
@@ -21,9 +24,9 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
+    @Transactional // TODO -- HibernateException: Could not obtain transaction-synchronized Session for current thread
 	public Book get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return sessionFactory.getCurrentSession().get(Book.class, id);
 	}
 
 	@Override
@@ -34,8 +37,11 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public void update(long id, Book book) {
-		// TODO Auto-generated method stub
-
+	    Session session = sessionFactory.getCurrentSession();
+	    Book oldBook = session.byId(Book.class).load(id);
+	    oldBook.setTitle(book.getAuthor());
+	    oldBook.setAuthor(book.getTitle());
+	    session.flush();
 	}
 
 	@Override
