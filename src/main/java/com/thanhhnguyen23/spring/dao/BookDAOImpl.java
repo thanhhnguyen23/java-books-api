@@ -38,8 +38,8 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public void update(long id, Book book) {
 	    Session session = sessionFactory.getCurrentSession();
-	    Book oldBook = session.byId(Book.class).load(id);
-	    oldBook.setTitle(book.getAuthor());
+		Book oldBook = session.byId(Book.class).load(id);
+		oldBook.setTitle(book.getAuthor());
 	    oldBook.setAuthor(book.getTitle());
 	    session.flush();
 	}
