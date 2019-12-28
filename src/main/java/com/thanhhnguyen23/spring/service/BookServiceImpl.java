@@ -42,9 +42,9 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
+	@Transactional // TODO -- explore internals
 	public void delete(long id) {
-		// TODO Auto-generated method stub
-		
+	    bookDAO.delete(id);
 	}
 
 }
