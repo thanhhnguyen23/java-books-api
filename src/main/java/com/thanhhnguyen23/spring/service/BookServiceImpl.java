@@ -19,7 +19,7 @@ public class BookServiceImpl implements BookService{
 	@Override
 	@Transactional // TODO -- explore internals
 	public long save(Book book) {
-		System.out.println("saving book...");
+		System.out.println("saving book ...");
 		return bookDAO.save(book);
 	}
 
@@ -31,19 +31,21 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public Book get(long id) {
-		System.out.println("getting one single book...");
+		System.out.println("getting one book ...");
 		return bookDAO.get(id);
 	}
 
 	@Override
 	@Transactional // TODO -- explore internals
 	public void update(long id, Book book) {
+		System.out.println("updating book ...");
 	    bookDAO.update(id, book);
 	}
 
 	@Override
 	@Transactional // TODO -- explore internals
 	public void delete(long id) {
+		System.out.println("deleting book ...");
 	    bookDAO.delete(id);
 	}
 

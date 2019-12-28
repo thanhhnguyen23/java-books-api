@@ -28,14 +28,13 @@ public class BookController {
 		long id = bookService.save(book);
 		System.out.println("id: " + id);
 		return ResponseEntity.ok("Book has been created with id: " + id);
-
 	}
 	
 	// get one book
 	@GetMapping("/api/book/{id}")
     public ResponseEntity<Book> get(@PathVariable("id") long id){
 		Book book = bookService.get(id);
-		System.out.println("Book id: " + book);
+		System.out.println("Book id: " + book + " Book title: " + book.getTitle());
 		return ResponseEntity.ok().body(book);
 	}
 
@@ -52,7 +51,5 @@ public class BookController {
 	    bookService.delete(id);
 	    return ResponseEntity.ok().body("Book has been deleted");
 	}
-
-	
 
 }

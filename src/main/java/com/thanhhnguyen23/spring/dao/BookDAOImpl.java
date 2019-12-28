@@ -24,7 +24,7 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-    @Transactional // TODO -- HibernateException: Could not obtain transaction-synchronized Session for current thread
+    @Transactional
 	public Book get(long id) {
 		return sessionFactory.getCurrentSession().get(Book.class, id);
 	}
@@ -41,7 +41,9 @@ public class BookDAOImpl implements BookDAO {
 		Book oldBook = session.byId(Book.class).load(id);
 		oldBook.setTitle(book.getAuthor());
 	    oldBook.setAuthor(book.getTitle());
-	    session.flush();
+		System.out.println("old book title: " + oldBook.getTitle());
+		System.out.println("old book tile: " + oldBook.getAuthor());
+//	    session.flush();
 	}
 
 	@Override
