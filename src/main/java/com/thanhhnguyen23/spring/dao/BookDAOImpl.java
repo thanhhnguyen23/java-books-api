@@ -2,13 +2,16 @@ package com.thanhhnguyen23.spring.dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.thanhhnguyen23.spring.model.Book;
 
-@Repository 
+import javax.transaction.Transactional;
+
+@Repository // TODO -- explore internals 
 public class BookDAOImpl implements BookDAO {
 
 	@Autowired
@@ -16,14 +19,14 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public long save(Book book) {
-		// TODO Auto-generated method stub
-		return 0;
+		sessionFactory.getCurrentSession().save(book);
+		return book.getId();
 	}
 
 	@Override
+    @Transactional
 	public Book get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return sessionFactory.getCurrentSession().get(Book.class, id);
 	}
 
 	@Override
@@ -34,14 +37,20 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public void update(long id, Book book) {
-		// TODO Auto-generated method stub
-
+	    Session session = sessionFactory.getCurrentSession();
+		Book oldBook = session.byId(Book.class).load(id);
+		oldBook.setTitle(book.getAuthor());
+	    oldBook.setAuthor(book.getTitle());
+		System.out.println("old book title: " + oldBook.getTitle());
+		System.out.println("old book tile: " + oldBook.getAuthor());
+//	    session.flush();
 	}
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
-
+	    Session session = sessionFactory.getCurrentSession();
+	    Book book = session.byId(Book.class).load(id);
+	    session.delete(book);
 	}
 
 }
